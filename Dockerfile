@@ -24,12 +24,8 @@ RUN apt-get update && apt-get install -y \
 
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*docker
-
-RUN pecl install redis
 # Install PHP extensions
 RUN docker-php-ext-install mbstring exif pcntl bcmath sockets opcache pdo pdo_pgsql
-
-RUN docker-php-ext-enable redis
 
 RUN chown -R www-data:www-data /var/www
 
@@ -40,12 +36,7 @@ FROM base AS prod
 
 COPY docker/php/conf.d/preload.ini /usr/local/etc/php/conf.d/preload.ini
 
-COPY ./bin /app/bin
-COPY ./config /app/config
-COPY ./migrations /app/migrations
-COPY ./public /app/public
-COPY ./src /app/src
-COPY composer.* /app
+COPY . .
 
 COPY --from=composer:2.7.2 /usr/bin/composer /usr/bin/composer
 
