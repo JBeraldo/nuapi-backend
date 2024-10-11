@@ -4,6 +4,8 @@ dev:
 stop:
 	docker compose down
 refresh: stop dev
+key: 
+	docker compose exec app php artisan key:generate
 cache:
 	docker compose exec app php artisan optimize:clear
 update:
