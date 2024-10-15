@@ -17,6 +17,7 @@ class UserResource extends JsonResource
         $fields = [];
         $fields['name'] = $this->name;
         $fields['email'] = $this->email;
+        $fields['role'] = $this->role;
 
         return $fields;
     }
