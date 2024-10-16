@@ -19,6 +19,7 @@ services:
         volumes:
             - ./:/var/www:rw
             - ./docker/php/conf.d/fpm.conf:/usr/local/etc/php-fpm.d/zz-docker.conf
+            - ./docker/php/conf.d/error.ini:/usr/local/etc/php/conf.d/error.ini
         networks:
             - api-network
     web-server:

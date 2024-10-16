@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\UserResource;
+use Symfony\Component\HttpFoundation\Response;
 
 class UserController extends Controller
 {
-    public function getMe()
+    public function getMe(): Response
     {
         $user = auth('api')->user();
 
@@ -15,11 +16,10 @@ class UserController extends Controller
                 'message' => 'Não foi possível autenticar o usuário.',
             ], 401);
         }
-
-        return [
+        return response()->json([
             'error' => false,
             'user' => new UserResource($user),
             'message' => 'Usuário recuperado com sucesso.',
-        ];
+        ]);
     }
 }

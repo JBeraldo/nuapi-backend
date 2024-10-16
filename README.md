@@ -21,5 +21,5 @@
     ```bash
     cp .env.example .env
     make dev
-    make key
+    make secret
     ```
