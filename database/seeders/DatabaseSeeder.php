@@ -14,9 +14,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+
+        app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
+
         User::factory()->create([
             'name' => 'Test User',
-            'email' => 'test@example.com',
+            'email' => 'test2@example.com',
             'password' => Hash::make('senha123'),
             'is_active' => true,
         ]);

@@ -10,6 +10,8 @@ migrate:
 	docker compose exec app php artisan migrate
 cache:
 	docker compose exec app php artisan optimize:clear
+seed:
+	docker compose exec app php artisan db:seed
 update:
 	docker run --rm -itv $(shell pwd):/app -w /app composer:2.7.2 composer update --no-scripts --ignore-platform-reqs -o
 require:
