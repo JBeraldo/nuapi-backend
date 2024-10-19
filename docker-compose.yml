@@ -45,16 +45,6 @@ services:
             POSTGRES_DB: ${DB_DATABASE} # The PostgreSQL default database (automatically created at first launch)
         ports:
             - "5432:5432"
-        depends_on:
-            - cache
-        networks:
-            - api-network
-    cache:
-        container_name: redis
-        image: redis:7
-        restart: unless-stopped
-        ports:
-            - "6379:6379"
         networks:
             - api-network
     migrations:

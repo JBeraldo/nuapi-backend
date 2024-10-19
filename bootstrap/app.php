@@ -5,7 +5,10 @@ use App\Http\Middleware\JsonResponseMiddleware;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
+use Illuminate\Foundation\Http\Middleware\ValidateCsrfToken;
 use Illuminate\Http\Middleware\HandleCors;
+use Illuminate\Session\Middleware\StartSession;
+use Illuminate\View\Middleware\ShareErrorsFromSession;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -18,6 +21,11 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->api(append: [
             JsonResponseMiddleware::class,
             HandleCors::class,
+        ]);
+        $middleware->web(remove: [
+            StartSession::class,
+            ShareErrorsFromSession::class,
+            ValidateCsrfToken::class,
         ]);
         $middleware->appendToGroup('auth', [
             EnsureTokenIsValid::class,
