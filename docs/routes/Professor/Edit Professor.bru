@@ -1,0 +1,18 @@
+meta {
+  name: Edit Professor
+  type: http
+  seq: 4
+}
+
+put {
+  url: localhost/api/professor/3
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "name": "Professor Um",
+    "email": "professor1@gmail.com"
+  }
+}

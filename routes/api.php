@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AccessLevelController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ProfessorController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +18,6 @@ Route::post('/role', [AccessLevelController::class, 'storeRole'])->middleware('a
 Route::post('/permission', [AccessLevelController::class, 'storePermission'])->middleware('api','auth');
 Route::post('/grant-role', [AccessLevelController::class, 'grateRoleToUser'])->middleware('api','auth');
 
+//Professor
+
+Route::resource('/professor', ProfessorController::class)->middleware(['api','auth']);

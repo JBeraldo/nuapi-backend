@@ -2,10 +2,8 @@
 
 namespace App\Services;
 
-use App\Enums\AccessLevels;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 

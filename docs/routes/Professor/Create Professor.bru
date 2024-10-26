@@ -1,0 +1,18 @@
+meta {
+  name: Create Professor
+  type: http
+  seq: 2
+}
+
+post {
+  url: localhost/api/professor
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "name": "Professor Dois",
+    "email": "professor2@gmail.com"
+  }
+}
