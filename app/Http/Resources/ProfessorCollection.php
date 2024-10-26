@@ -13,7 +13,7 @@ class ProfessorCollection extends ResourceCollection
      *
      * @var string
      */
-    public $collects = UserResource::class;
+    public $collects = ProfessorResource::class;
     /**
      * Transform the resource collection into an array.
      *

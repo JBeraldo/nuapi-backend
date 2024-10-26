@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class UserResource extends JsonResource
+class ProfessorResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -18,6 +18,7 @@ class UserResource extends JsonResource
         $fields['name'] = $this->name;
         $fields['email'] = $this->email;
         $fields['cpf'] = $this->cpf;
+        $fields['specialization'] = $this->specialization;
         $fields['role'] = $this->role;
 
         return $fields;

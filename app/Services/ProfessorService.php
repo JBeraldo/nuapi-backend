@@ -28,13 +28,13 @@ class ProfessorService
         try {
             DB::beginTransaction();
 
-            $role  = Role::findByName('Professor');
-
             $data['password'] = Hash::make(env('DEFAULT_PROFESSOR_PASSWORD','senha123'));
+
+            $data['specialization'] = strtolower($data['specialization']);
 
             $model = $this->model->create($data);
 
-            $model->assignRole($role);
+            $model->assignRole('Professor');
 
             DB::commit();
         }

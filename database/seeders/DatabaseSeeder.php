@@ -3,9 +3,10 @@
 namespace Database\Seeders;
 
 use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
+
+// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class DatabaseSeeder extends Seeder
 {
@@ -17,11 +18,12 @@ class DatabaseSeeder extends Seeder
 
         app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test2@example.com',
-            'password' => Hash::make('senha123'),
-            'is_active' => true,
-        ]);
+        User::factory()
+            ->professor()
+            ->count(10)
+            ->create()
+            ->each(function ($user) {
+                $user->assignRole('Professor');
+            });
     }
 }

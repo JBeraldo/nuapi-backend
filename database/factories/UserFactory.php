@@ -26,8 +26,18 @@ class UserFactory extends Factory
         return [
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
+            'cpf' => fake()->cpf(false),
             'password' => static::$password ??= Hash::make('senha123'),
             'is_active' => true,
         ];
+    }
+
+    public function professor(): Factory
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'specialization' => 'a' . fake()->randomNumber(9, true),
+            ];
+        });
     }
 }
