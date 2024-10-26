@@ -36,7 +36,7 @@ class UserFactory extends Factory
     {
         return $this->state(function (array $attributes) {
             return [
-                'specialization' => 'a' . fake()->randomNumber(9, true),
+                'specialization' => 'a' . fake()->randomNumber(7, true),
             ];
         });
     }
