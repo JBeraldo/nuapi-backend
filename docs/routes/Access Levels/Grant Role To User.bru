@@ -5,14 +5,14 @@ meta {
 }
 
 post {
-  url: localhost/api/grant-role
+  url: {{base_url}}/api/grant-role
   body: json
   auth: inherit
 }
 
 body:json {
   {
-    "role":"Professor",
-    "user_id": 1
+    "role":"Admin",
+    "user_id": 214
   }
 }
