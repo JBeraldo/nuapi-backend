@@ -18,6 +18,11 @@ class DatabaseSeeder extends Seeder
 
         app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
 
+        $this->call([
+            AdminSeeder::class,
+            RoleSeeder::class
+        ]);
+
         User::factory()
             ->professor()
             ->count(10)

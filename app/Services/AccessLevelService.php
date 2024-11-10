@@ -34,11 +34,8 @@ class AccessLevelService
             DB::beginTransaction();
 
             $role = Role::findByName($role_name);
-            $permission = Permission::findByName($name);
 
-            if(empty($permission)){
-                $permission = Permission::create(["name" => $name]);
-            }
+            $permission = Permission::create(["name" => $name]);
 
             $permission->assignRole($role);
 
