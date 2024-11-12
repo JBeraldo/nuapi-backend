@@ -1,0 +1,17 @@
+meta {
+  name: Create Role
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://localhost:8000/api/role
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "name":"Admin"
+  }
+}

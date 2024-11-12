@@ -2,18 +2,8 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
-
-class SubjectRequest extends FormRequest
+class SubjectRequest extends BaseRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     */
-    public function authorize(): bool
-    {
-        return false;
-    }
-
     /**
      * Get the validation rules that apply to the request.
      *
@@ -24,9 +14,22 @@ class SubjectRequest extends FormRequest
         return [
             "name" => "required|string",
             "department" => "required|string",
-            "teacher_id" => "required|string",
+            "teacher_id" => "required|numeric",
+            "is_active" => "required|boolean",
             "students" => "required|array",
             "students.*.id" => "required|numeric",
+        ];
+    }
+
+    public function attributes(): array
+    {
+        return [
+            "name" => "Nome",
+            "department" => "Departamento",
+            "teacher_id" => "Professor",
+            "students" => "Estudantes",
+            "students.*.id" => "Estudante",
+            "is_active" => "Ativo/Inativo",
         ];
     }
 }

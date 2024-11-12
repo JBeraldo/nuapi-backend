@@ -2,9 +2,7 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
-
-class CreatePermissionRequest extends FormRequest
+class CreatePermissionRequest extends BaseRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,8 +20,8 @@ class CreatePermissionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' =>  'required|string',
-            'role' =>  'required|string|exists:roles,name',
+            'name' => 'required|string',
+            'role' => 'required|string|exists:roles,name',
         ];
     }
 }

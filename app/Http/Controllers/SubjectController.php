@@ -24,7 +24,7 @@ class SubjectController extends Controller
 
     public function show(int $id): JsonResponse
     {
-        $model = $this->service->find($id);
+        $model = $this->service->find($id)->load('teacher', 'students');
 
         return response()->json([
             "error" => false,
