@@ -4,7 +4,6 @@ namespace App\Models;
 
 use App\Models\File;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Student extends Model
 {
@@ -14,10 +13,13 @@ class Student extends Model
         'ra',
     ];
 
-
     public function files()
     {
         return $this->hasMany(File::class);
     }
-    
+
+    public function subjects()
+    {
+        return $this->belongsToMany(Subject::class, 'subject_students', 'subject_id', 'student_id');
+    }
 }
