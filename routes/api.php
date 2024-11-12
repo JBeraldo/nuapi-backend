@@ -1,10 +1,12 @@
 <?php
 
-use App\Http\Controllers\AccessLevelController;
-use App\Http\Controllers\LoginController;
-use App\Http\Controllers\ProfessorController;
-use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FileController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\StudentController;
+use App\Http\Controllers\ProfessorController;
+use App\Http\Controllers\AccessLevelController;
 
 // Usuários
 Route::get('/me', [UserController::class, 'getMe'])->middleware(['api', 'auth']);
@@ -21,3 +23,11 @@ Route::post('/grant-role', [AccessLevelController::class, 'grateRoleToUser'])->m
 //Professor
 
 Route::resource('/professor', ProfessorController::class)->middleware(['api','auth']);
+
+//Aluno
+
+Route::resource('/student', StudentController::class)->middleware(['api']);
+
+//Arquivos
+
+Route::post('/store-pdf', [FileController::class, 'store'])->middleware(['api']);
