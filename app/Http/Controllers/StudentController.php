@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreStudentRequest;
-use App\Http\Requests\UpdateStudentRequest;
-use App\Http\Resources\StudentCollection;
-use App\Http\Resources\UserResource;
 use App\Services\StudentService;
 use Illuminate\Http\JsonResponse;
+use App\Http\Resources\UserResource;
+use App\Http\Resources\StudentResource;
+use App\Http\Resources\StudentCollection;
+use App\Http\Requests\StoreStudentRequest;
+use App\Http\Requests\UpdateStudentRequest;
 use Symfony\Component\HttpFoundation\Response;
 
 class StudentController extends Controller
@@ -48,7 +49,7 @@ class StudentController extends Controller
         $model = $this->service->find($id);
         return response()->json([
             "error" => false,
-            "student" => new UserResource($model),
+            "student" => new StudentResource($model),
             "message" => "Aluno encontrado"
         ]);
     }
@@ -58,9 +59,10 @@ class StudentController extends Controller
      */
     public function update(int $id, UpdateStudentRequest $request): JsonResponse
     {
-        $this->service->update($request->toArray(), $id);
+        $model = $this->service->update($request->toArray(), $id);
         return response()->json([
             "error" => false,
+            "student" => $model,
             "message" => "Aluno atualizado com sucesso!"
         ]);
     }

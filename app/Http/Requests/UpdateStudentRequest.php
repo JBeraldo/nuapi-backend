@@ -20,9 +20,8 @@ class UpdateStudentRequest extends BaseRequest
     public function rules(): array
     {
         return [
-            "id" => "required",
-            "name" => "nullable|string",
-            "ra" => "nullable|string",
+            "name" => "required|string",
+            "ra" => "required|string",
         ];
     }
 }
