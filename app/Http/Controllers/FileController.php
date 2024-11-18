@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Services\FileService;
 use Illuminate\Http\JsonResponse;
+use App\Http\Resources\FileResource;
 use App\Http\Resources\UserResource;
 use App\Http\Resources\FileCollection;
 use App\Http\Requests\StoreFileRequest;
@@ -37,7 +38,7 @@ class FileController extends Controller
         $this->service->store($request->toArray());
         return response()->json([
             "error" => false,
-            "message" => "File criado com sucesso"
+            "message" => "Arquivo criado com sucesso"
         ]);
     }
 
@@ -49,8 +50,8 @@ class FileController extends Controller
         $model = $this->service->find($id);
         return response()->json([
             "error" => false,
-            "file" => new UserResource($model),
-            "message" => "File encontrado"
+            "file" => new FileResource($model),
+            "message" => "Arquivo encontrado"
         ]);
     }
 
@@ -62,7 +63,7 @@ class FileController extends Controller
         $this->service->update($request->toArray(), $id);
         return response()->json([
             "error" => false,
-            "message" => "File atualizado com sucesso!"
+            "message" => "Arquivo atualizado com sucesso!"
         ]);
     }
 
@@ -74,7 +75,13 @@ class FileController extends Controller
         $this->service->destroy($id);
         return response()->json([
             "error" => false,
-            "message" => "File deletado com sucesso!"
+            "message" => "Arquivo deletado com sucesso!"
         ]);
+    }
+
+    public function download(int $id)
+    {
+        
+        return $this->service->download($id);
     }
 }

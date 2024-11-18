@@ -28,6 +28,7 @@ Route::resource('/student', StudentController::class)->middleware(['api']);
 
 //Arquivos
 Route::post('/store-pdf', [FileController::class, 'store'])->middleware(['api']);
+Route::get('/download/{id}', [FileController::class, 'download'])->middleware(['api']);
 
 //Disciplinas
 Route::resource('/disciplinas', SubjectController::class)->middleware(['api', 'auth']);

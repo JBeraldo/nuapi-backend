@@ -23,12 +23,14 @@ class FileService
             throw new \Exception('O arquivo enviado não é válido.');
         }
 
-        $fileContent = file_get_contents($file->getRealPath());
+        $fileContent = base64_encode(file_get_contents($file->getRealPath()));
 
         $fileName = $file->getClientOriginalName();
         if (empty($fileName)) {
             throw new \Exception('O nome do arquivo está vazio.');
         }
+
+        
 
         $fileRecord = File::create([
             'file_name' => $fileName,
@@ -38,6 +40,31 @@ class FileService
         ]);
 
         return $fileRecord;
+    }
+
+    public function download($id)
+    {
+        $file = File::find($id);
+
+        if (!$file) {
+            abort(404, 'Arquivo não encontrado');
+        }
+
+        $fileName = $file->file_name;
+
+        $fileContent = base64_decode((string)$file->file_content);
+
+        if ($fileContent === false) {
+            abort(500, 'Erro ao decodificar o arquivo');
+        }
+
+        return response()->stream(function() use ($fileContent) {
+            echo $fileContent;
+        }, 200, [
+            'Content-Type' => 'application/pdf',
+            'Content-Disposition' => "attachment; filename=\"$fileName\"",
+            'Content-Length' => strlen((string)$fileContent),
+        ]);
     }
 
 }

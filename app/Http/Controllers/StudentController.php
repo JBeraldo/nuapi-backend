@@ -36,7 +36,7 @@ class StudentController extends Controller
         $this->service->store($request->toArray());
         return response()->json([
             "error" => false,
-            "message" => "Student criado com sucesso"
+            "message" => "Aluno criado com sucesso"
         ]);
     }
 
@@ -49,7 +49,7 @@ class StudentController extends Controller
         return response()->json([
             "error" => false,
             "student" => new UserResource($model),
-            "message" => "Student encontrado"
+            "message" => "Aluno encontrado"
         ]);
     }
 
@@ -61,7 +61,7 @@ class StudentController extends Controller
         $this->service->update($request->toArray(), $id);
         return response()->json([
             "error" => false,
-            "message" => "Student atualizado com sucesso!"
+            "message" => "Aluno atualizado com sucesso!"
         ]);
     }
 
@@ -73,7 +73,7 @@ class StudentController extends Controller
         $this->service->destroy($id);
         return response()->json([
             "error" => false,
-            "message" => "Student deletado com sucesso!"
+            "message" => "Aluno deletado com sucesso!"
         ]);
     }
 }
