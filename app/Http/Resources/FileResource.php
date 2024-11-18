@@ -16,7 +16,7 @@ class FileResource extends JsonResource
     {
         $fields = [];
         $fields['file_name'] = $this->file_name;
-        $fields['file_content'] = $this->file_content;
+        $fields['file_path'] = $this->file_content;
         $fields['user_id'] = $this->user_id;
         $fields['student_id'] = $this->student_id;
 

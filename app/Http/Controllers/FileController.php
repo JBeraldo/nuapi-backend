@@ -81,7 +81,6 @@ class FileController extends Controller
 
     public function download(int $id)
     {
-        
         return $this->service->download($id);
     }
 }
