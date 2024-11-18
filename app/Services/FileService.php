@@ -16,8 +16,7 @@ class FileService
     public function store(array $data)
 {
     $studentId = $data['student_id'];
-    $userId = auth('api')->user()->id;
-    $file = $data['pdf'];
+    $file = $data['file_content'];
 
     if (!$file instanceof UploadedFile) {
         throw new \InvalidArgumentException('O arquivo enviado não é válido.');
