@@ -16,7 +16,7 @@ class FileService
     public function store(array $data)
 {
     $studentId = $data['student_id'];
-    $userId = $data['user_id'];
+    $userId = auth('api')->user()->id;
     $file = $data['pdf'];
 
     if (!$file instanceof UploadedFile) {
