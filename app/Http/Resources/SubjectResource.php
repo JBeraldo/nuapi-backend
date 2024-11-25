@@ -15,6 +15,7 @@ class SubjectResource extends JsonResource
     public function toArray(Request $request): array
     {
         $fields = [];
+        $fields['id'] = $this->id;
         $fields['name'] = $this->name;
         $fields['department'] = $this->department;
         $fields['is_active'] = $this->is_active;
