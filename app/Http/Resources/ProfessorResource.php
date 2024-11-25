@@ -15,6 +15,7 @@ class ProfessorResource extends JsonResource
     public function toArray(Request $request): array
     {
         $fields = [];
+        $fields['id'] = $this->id;
         $fields['name'] = $this->name;
         $fields['email'] = $this->email;
         $fields['cpf'] = $this->cpf;
