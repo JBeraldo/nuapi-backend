@@ -15,9 +15,13 @@ class SubjectService
 
     }
 
-    public function get(): Collection
+    public function get($active): Collection
     {
-        return $this->model->with(['students', 'teacher'])->where('is_active', true)->get();
+        if($active){
+            return $this->model->with(['students', 'teacher'])->where('is_active', true)->get();
+        }
+        return $this->model->with(['students', 'teacher'])->where('is_active', false)->get();
+
     }
 
     public function store(array $data): Subject

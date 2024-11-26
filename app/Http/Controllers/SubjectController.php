@@ -6,6 +6,7 @@ use App\Http\Requests\SubjectRequest;
 use App\Http\Resources\SubjectResource;
 use App\Services\SubjectService;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class SubjectController extends Controller
@@ -14,10 +15,10 @@ class SubjectController extends Controller
     {
     }
 
-    public function index(): JsonResponse
+    public function index(bool $active = true): JsonResponse
     {
 
-        $models = $this->service->get();
+        $models = $this->service->get($active);
 
         return response()->json(SubjectResource::collection($models), Response::HTTP_OK);
     }

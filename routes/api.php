@@ -31,4 +31,7 @@ Route::post('/store-pdf', [FileController::class, 'store'])->middleware(['api', 
 Route::get('/download/{id}', [FileController::class, 'download'])->middleware(['api', 'auth']);
 
 //Disciplinas
-Route::resource('/disciplinas', SubjectController::class)->middleware(['api', 'auth']);
+Route::get('/disciplinas/{active?}', [SubjectController::class, 'index'])->middleware(['api', 'auth']);
+Route::resource('/disciplinas', SubjectController::class)->middleware(['api', 'auth'])->except([
+    'index'
+]);;
