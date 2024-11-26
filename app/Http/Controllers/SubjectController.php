@@ -15,11 +15,9 @@ class SubjectController extends Controller
     {
     }
 
-    public function index(bool $active = true): JsonResponse
+    public function index(?string $active = 'active'): JsonResponse
     {
-
         $models = $this->service->get($active);
-
         return response()->json(SubjectResource::collection($models), Response::HTTP_OK);
     }
 

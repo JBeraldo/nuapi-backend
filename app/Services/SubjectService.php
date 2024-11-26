@@ -17,10 +17,10 @@ class SubjectService
 
     public function get($active): Collection
     {
-        if($active){
-            return $this->model->with(['students', 'teacher'])->where('is_active', true)->get();
+        if($active === 'inativo'){
+            return $this->model->with(['students', 'teacher'])->where('is_active', false)->get();
         }
-        return $this->model->with(['students', 'teacher'])->where('is_active', false)->get();
+        return $this->model->with(['students', 'teacher'])->where('is_active', true)->get();
 
     }
 
