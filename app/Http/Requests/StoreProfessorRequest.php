@@ -22,8 +22,6 @@ class StoreProfessorRequest extends BaseRequest
         return [
             "name" => "required|string",
             "email" => "required|string|email|unique:users,email",
-            "cpf" => "required|string|min:11|max:11",
-            "specialization" => "required|string|max:10",
         ];
     }
 }

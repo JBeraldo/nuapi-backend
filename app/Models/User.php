@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\File;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Spatie\Permission\Traits\HasRoles;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Notifications\Notifiable;
@@ -23,8 +24,6 @@ class User extends Authenticatable implements JWTSubject
         'email',
         'password',
         'is_active',
-        'cpf',
-        'specialization'
     ];
 
     protected $with = [
@@ -76,8 +75,13 @@ class User extends Authenticatable implements JWTSubject
         }
     }
 
-    public function files()
+    public function files(): HasMany
     {
         return $this->hasMany(File::class);
+    }
+
+    public function notifications(): HasMany
+    {
+        return $this->hasMany(Notification::class);
     }
 }

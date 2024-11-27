@@ -1,13 +1,13 @@
 meta {
-  name: Update Subject
+  name: Store Subject
   type: http
-  seq: 3
+  seq: 2
 }
 
-put {
-  url: http://localhost:8000/api/disciplinas/1
+post {
+  url: {{base_url}}/api/subjects
   body: json
-  auth: none
+  auth: inherit
 }
 
 headers {
@@ -19,7 +19,7 @@ body:json {
     "name": "Banco de dados",
     "department": "DAINF",
     "teacher_id": 2,
-    "is_active": false,
+    "is_active": true,
     "students": [
       {
         "id": 1

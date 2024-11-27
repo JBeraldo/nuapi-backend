@@ -24,7 +24,6 @@ class DatabaseSeeder extends Seeder
         ]);
 
         User::factory()
-            ->professor()
             ->count(10)
             ->create()
             ->each(function ($user) {

@@ -3,6 +3,7 @@
 use App\Http\Controllers\AccessLevelController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\ProfessorController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\SubjectController;
@@ -31,7 +32,12 @@ Route::post('/store-pdf', [FileController::class, 'store'])->middleware(['api', 
 Route::get('/download/{id}', [FileController::class, 'download'])->middleware(['api', 'auth']);
 
 //Disciplinas
-Route::get('/disciplinas/{active?}', [SubjectController::class, 'index'])->middleware(['api', 'auth']);
-Route::resource('/disciplinas', SubjectController::class)->middleware(['api', 'auth'])->except([
+Route::get('/subjects/{active?}', [SubjectController::class, 'index'])->middleware(['api', 'auth']);
+Route::resource('/subjects', SubjectController::class)->middleware(['api', 'auth'])->except([
     'index'
-]);;
+]);
+
+//Notificacoes
+Route::get('/notifications/{read?}', [NotificationController::class, 'index'])->middleware(['api', 'auth']);
+Route::put('/notifications/read', [NotificationController::class, 'read'])->middleware(['api', 'auth']);
+Route::put('/notifications/readAll', [NotificationController::class, 'readAll'])->middleware(['api', 'auth']);
