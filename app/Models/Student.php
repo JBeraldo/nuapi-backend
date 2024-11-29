@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use App\Models\File;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Student extends Model
 {
@@ -18,7 +18,7 @@ class Student extends Model
         return $this->hasMany(File::class);
     }
 
-    public function subjects()
+    public function subjects(): BelongsToMany
     {
         return $this->belongsToMany(Subject::class, 'subject_students', 'student_id', 'subject_id');
     }

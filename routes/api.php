@@ -28,8 +28,8 @@ Route::resource('/professor', ProfessorController::class)->middleware(['api', 'a
 Route::resource('/student', StudentController::class)->middleware(['api', 'auth']);
 
 //Arquivos
-Route::post('/store-pdf', [FileController::class, 'store'])->middleware(['api', 'auth']);
-Route::get('/download/{id}', [FileController::class, 'download'])->middleware(['api', 'auth']);
+Route::post('/store-pdf', [StudentController::class, 'uploadPEI'])->middleware(['api', 'auth']);
+Route::get('/download/{id}', [FileController::class, 'downloadPEI'])->middleware(['api', 'auth']);
 
 //Disciplinas
 Route::get('/subjects/{active?}', [SubjectController::class, 'index'])->middleware(['api', 'auth']);

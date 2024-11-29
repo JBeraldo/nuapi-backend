@@ -1,0 +1,16 @@
+meta {
+  name: Save pdf
+  type: http
+  seq: 1
+}
+
+post {
+  url: localhost/api/store-pdf
+  body: multipartForm
+  auth: none
+}
+
+body:multipart-form {
+  file_content: @file(C:\Users\joaoa\Downloads\dummy.pdf)
+  student_id: 11
+}

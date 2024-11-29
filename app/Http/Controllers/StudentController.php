@@ -9,6 +9,8 @@ use App\Http\Resources\StudentResource;
 use App\Http\Resources\StudentCollection;
 use App\Http\Requests\StoreStudentRequest;
 use App\Http\Requests\UpdateStudentRequest;
+use Illuminate\Http\Request;
+use Illuminate\Http\UploadedFile;
 use Symfony\Component\HttpFoundation\Response;
 
 class StudentController extends Controller
@@ -76,6 +78,31 @@ class StudentController extends Controller
         return response()->json([
             "error" => false,
             "message" => "Aluno deletado com sucesso!"
+        ]);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function uploadPEI(Request $request): JsonResponse
+    {
+        $file = $request->file('file_content');
+
+        if (!$file instanceof UploadedFile) {
+            throw new \InvalidArgumentException('O arquivo enviado não é válido.');
+        }
+
+        // Verificar se o arquivo é um PDF
+        if ($file->getClientMimeType() !== 'application/pdf') {
+            throw new \InvalidArgumentException('O arquivo deve ser um PDF.');
+        }
+
+        // Armazenar o arquivo em disco, usando o Storage do Laravel
+        $this->service->uploadPEI($request->toArray());
+
+        return response()->json([
+            "error" => false,
+            "message" => "Arquivo criado com sucesso"
         ]);
     }
 }
