@@ -14,7 +14,12 @@ class Notification extends Model
         'title',
         'comment',
         'read_at',
-        'user_id'
+        'user_id',
+        'metadata'
+    ];
+
+    protected $casts = [
+        'metadata' => 'array'
     ];
 
     protected $attributes = [

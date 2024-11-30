@@ -19,6 +19,7 @@ class NotificationResource extends JsonResource
         $fields['title'] = $this->title;
         $fields['comment'] = $this->comment;
         $fields['read'] = $this->read;
+        $fields['metadata'] = $this->metadata;
         $fields['created_at'] = $this->created_at;
 
         return $fields;

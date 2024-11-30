@@ -20,8 +20,8 @@ class NotificationService
     {
         $user_id =  app('auth')->id();
        return match ($read) {
-            'read' => $this->model->where('read_at',null)->where('user_id',$user_id)->get(),
-            'unread' =>  $this->model->where('read_at','!=',null)->where('user_id',$user_id)->get(),
+            'read' => $this->model->where('read_at','!=',null)->where('user_id',$user_id)->get(),
+            'unread' =>  $this->model->where('read_at',null)->where('user_id',$user_id)->get(),
             default => $this->model->where('user_id',$user_id)->get()
         };
     }
@@ -35,6 +35,24 @@ class NotificationService
 
             DB::commit();
         }catch (\Exception $e){
+            DB::rollBack();
+            throw $e;
+        }
+    }
+
+    /**
+     * @throws \Exception
+     */
+    public function read($notifications): void
+    {
+        try {
+            DB::beginTransaction();
+
+            $this->model->whereIn('id',$notifications)->update(['read_at'=>now()]);
+
+            DB::commit();
+        }
+        catch (\Exception $e){
             DB::rollBack();
             throw $e;
         }

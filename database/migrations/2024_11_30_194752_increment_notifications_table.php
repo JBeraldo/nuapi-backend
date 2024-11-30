@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('notifications', function (Blueprint $table) {
-            $table->timestamp("read_at")->nullable()->change();
+            $table->jsonb('metadata')->nullable();
         });
     }
 
@@ -22,7 +22,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('notifications', function (Blueprint $table) {
-            $table->timestamp("read_at")->change();
+            $table->dropColumn('metadata');
         });
     }
 };

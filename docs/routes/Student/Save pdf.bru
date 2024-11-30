@@ -5,9 +5,9 @@ meta {
 }
 
 post {
-  url: localhost/api/store-pdf
+  url: {{base_url}}/api/store-pdf
   body: multipartForm
-  auth: none
+  auth: inherit
 }
 
 body:multipart-form {

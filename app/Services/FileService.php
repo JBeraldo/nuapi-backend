@@ -37,11 +37,10 @@ class FileService
             if (empty($fileName)) {
                 throw new Exception('O nome do arquivo está vazio.');
             }
-
-            // Armazenar o caminho do arquivo no banco
+            
             $this->model->create([
                 'file_name' => $fileName,
-                'file_path' => $filePath,  // Agora você armazena o caminho, não o conteúdo em base64
+                'file_path' => $filePath,
                 'user_id' => $userId,
                 'student_id' => $studentId,
             ]);

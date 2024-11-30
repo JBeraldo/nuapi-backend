@@ -39,5 +39,4 @@ Route::resource('/subjects', SubjectController::class)->middleware(['api', 'auth
 
 //Notificacoes
 Route::get('/notifications/{read?}', [NotificationController::class, 'index'])->middleware(['api', 'auth']);
-Route::put('/notifications/read', [NotificationController::class, 'read'])->middleware(['api', 'auth']);
-Route::put('/notifications/readAll', [NotificationController::class, 'readAll'])->middleware(['api', 'auth']);
+Route::put('/notifications', [NotificationController::class, 'read'])->middleware(['api', 'auth']);

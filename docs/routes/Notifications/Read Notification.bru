@@ -1,0 +1,19 @@
+meta {
+  name: Read Notification
+  type: http
+  seq: 2
+}
+
+put {
+  url: localhost/api/notifications/read
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "notifications": [
+      24
+    ]
+  }
+}

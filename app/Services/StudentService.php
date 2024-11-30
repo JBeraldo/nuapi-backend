@@ -55,6 +55,8 @@ class StudentService
                     "comment" => "Comentário",
                     "user_id" => $subject->teacher_id,
                     "read_at" => null,
+                    "metadata" => json_encode([
+                        'student_id' => $model->id,]),
                     "created_at" =>  Carbon::now(),
                     "updated_at" =>  Carbon::now()
                 ];
