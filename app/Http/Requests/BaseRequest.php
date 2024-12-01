@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
@@ -21,7 +22,7 @@ abstract class BaseRequest extends FormRequest
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
 
-    public function failedValidation(\Illuminate\Contracts\Validation\Validator $validator)
+    public function failedValidation(Validator $validator)
     {
         throw new HttpResponseException(response()->json([
             'message' => $validator->errors()->first(),

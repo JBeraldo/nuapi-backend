@@ -21,6 +21,9 @@ class NotificationController extends Controller
         return response()->json(NotificationResource::collection($models), Response::HTTP_OK);
     }
 
+    /**
+     * @throws \Exception
+     */
     public function read(ReadNotificationsRequest $request) : JsonResponse{
         $this->service->read($request->get('notifications'));
         return response()->json([

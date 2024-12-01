@@ -1,6 +1,6 @@
 dev:
 	docker run --rm -itv $(shell pwd):/app -w /app composer:2.7.2 composer install --no-scripts --ignore-platform-reqs -o
-	docker compose up -d && docker compose exec app php artisan migrate
+	docker compose up -d
 stop:
 	docker compose down
 refresh: stop dev
